@@ -41,4 +41,12 @@ router
       });
   });
 
+router
+  .post('/', (req, res) => {
+    complainsController.post(req.body)
+      .then((response) => {
+        res.status(response.statusCode).send(response.data);
+      });
+  });
+
 module.exports = router;
