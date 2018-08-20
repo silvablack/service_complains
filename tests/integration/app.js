@@ -83,4 +83,23 @@ describe('Test Integration', () => {
         });
     });
   });
+
+  describe('Route /PUT /complains:id', () => {
+    it('should update complaim object', (done) => {
+      const data = {
+        locale: {
+          city: 'São Vicente Ferrer',
+        },
+      };
+      request
+        .put(`/complains/${defaultComplains._id}`)
+        .send(data)
+        .end((err, res) => {
+          expect(res.body._id).to.be.eql(defaultComplains._id);
+          expect(res.body.locale.city).to.be.eql(data.locale.city);
+          expect(res.status).to.be.eql(200);
+          done(err);
+        });
+    });
+  });
 });
