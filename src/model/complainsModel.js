@@ -24,6 +24,13 @@ module.exports = new class ComplainsModel {
   }
 
   /**
+     * @returns Company.findById()
+     */
+  getById(id) {
+    return Complains.findById(id);
+  }
+
+  /**
      *
      * @param {_id: String, name: String, mail: String<validate|mail>, cnpj: String}
      * @returns Complains.create()

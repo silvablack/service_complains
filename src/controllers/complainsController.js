@@ -71,6 +71,21 @@ class ComplainsController {
         }).catch(erro => reject(errorResponse(erro.message)));
     });
   }
+
+  /**
+     * @name getById
+     * @description Send Request to Find Model By ID
+     * @method getById
+     * @returns Promise ComplainsModel.getById(id)
+     */
+  getById(id) {
+    return new Promise((resolve, reject) => {
+      this.ComplainsModel.getById(id)
+        .then((complains) => {
+          resolve(defaultResponse(complains));
+        }).catch(err => reject(errorResponse(err.message)));
+    });
+  }
 }
 
 module.exports = ComplainsController;

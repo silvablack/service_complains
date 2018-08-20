@@ -33,4 +33,12 @@ router
       });
   });
 
+router
+  .get('/:id', (req, res) => {
+    complainsController.getById(req.params.id)
+      .then((response) => {
+        res.status(response.statusCode).send(response.data);
+      });
+  });
+
 module.exports = router;
