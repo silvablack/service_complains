@@ -18,4 +18,3 @@ const HOST = process.env.URL_SERVICE_COMPANY || '0.0.0.0';
  */
 app.listen(PORT, HOST);
 console.log(`Servidor rodando em http://${HOST}:${PORT}`);
-

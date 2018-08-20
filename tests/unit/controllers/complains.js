@@ -13,11 +13,11 @@ describe('Controller Complains', () => {
         locale: {
           city: 'São Luís',
           state: 'Maranhão',
-          uf: 'MA'
+          uf: 'MA',
         },
-        company_id:'5b74e44d6906800036631800',
+        company_id: '5b74e44d6906800036631800',
         date_create: Date.now(),
-        date_updated: Date.now()
+        date_updated: Date.now(),
       }];
       td.when(Complains.getAll()).thenResolve(expectResponse);
       const complainsController = new ComplainsController(Complains);
@@ -27,5 +27,4 @@ describe('Controller Complains', () => {
       });
     });
   });
-  
 });

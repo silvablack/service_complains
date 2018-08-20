@@ -4,7 +4,7 @@
  * @returns methods <get, getById, post, put, delete>
  * @version 1.0.0
  */
-'use strict';
+
 
 /**
  * @requires Http Status
@@ -27,51 +27,50 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
   error: message,
 }, statusCode);
 
-class ComplainsController{
+class ComplainsController {
+  constructor(Complains) {
+    this.ComplainsModel = Complains;
+  }
 
-    constructor(Complains){
-        this.ComplainsModel = Complains;
-    }
-    
-    /**
+  /**
      * @name callback for Request VERBS GET ALL
-     * @param {Request} req 
-     * @param {Response} res 
+     * @param {Request} req
+     * @param {Response} res
      * @returns Promise ComplainsModel.getAll()
      */
-    getAll(){
-        return new Promise((resolve,reject)=>{
-            this.ComplainsModel.getAll()
-            .then((complains)=>{
-                resolve(defaultResponse(complains));
-            }).catch(err => reject(errorResponse(err.message)));
-        });
-    }
+  getAll() {
+    return new Promise((resolve, reject) => {
+      this.ComplainsModel.getAll()
+        .then((complains) => {
+          resolve(defaultResponse(complains));
+        }).catch(err => reject(errorResponse(err.message)));
+    });
+  }
 
-    /**
+  /**
      * @name getAllFromCache
      * @description Return a response with all companies from cache
      * @return Promise ComplainsModel.gellAllFromCache()
      */
-    getAllFromCache() {
-        return new Promise((resolve, reject) => {
-        /**
+  getAllFromCache() {
+    return new Promise((resolve, reject) => {
+      /**
         * @constructor Redis Client
         */
-        let client = redis.createClient(`redis://${process.env.URL_CACHE_COMPANY}`);
-        client.get('allComplains', (err, reply) => {
-            if (reply) {
-                resolve(defaultResponse(reply));
-            }
-        });
-        this.ComplainsModel.getAll()
-            .then((complains) => {
-                client.set('allComplains', JSON.stringify(complains));
-                client.expire('allComplains', 20);
-                resolve(defaultResponse(complains));
-            }).catch(erro => reject(errorResponse(erro.message)));
-        });
-    }
+      const client = redis.createClient(`redis://${process.env.URL_CACHE_COMPANY}`);
+      client.get('allComplains', (err, reply) => {
+        if (reply) {
+          resolve(defaultResponse(reply));
+        }
+      });
+      this.ComplainsModel.getAll()
+        .then((complains) => {
+          client.set('allComplains', JSON.stringify(complains));
+          client.expire('allComplains', 20);
+          resolve(defaultResponse(complains));
+        }).catch(erro => reject(errorResponse(erro.message)));
+    });
+  }
 }
 
 module.exports = ComplainsController;

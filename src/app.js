@@ -1,7 +1,7 @@
 /**
  * @author Paulo Silva
  * @description Server
- * @returns app with instance of express 
+ * @returns app with instance of express
  * @version 1.0.0
  */
 
