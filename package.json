@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Complains Service on Node.js",
   "author": "Paulo Silva <paulosilvadev3@gmail.com>",
-  "main": "./src/app.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/app.js"
+    "start": "node ./src/index.js",
+    "test-integration": "NODE_ENV=test mocha --opts ./tests/integration/mocha.opts ./tests/integration/*.js",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
