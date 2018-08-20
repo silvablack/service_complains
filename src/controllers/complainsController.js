@@ -57,7 +57,7 @@ class ComplainsController {
       /**
         * @constructor Redis Client
         */
-      const client = redis.createClient(`redis://${process.env.URL_CACHE_COMPANY}`);
+      const client = redis.createClient(`redis://${process.env.URL_CACHE_COMPLAINS}`);
       client.get('allComplains', (err, reply) => {
         if (reply) {
           resolve(defaultResponse(reply));
@@ -84,6 +84,21 @@ class ComplainsController {
         .then((complains) => {
           resolve(defaultResponse(complains));
         }).catch(err => reject(errorResponse(err.message)));
+    });
+  }
+
+  /**
+     * @name post
+     * @description Send Complain Object to Create Model
+     * @method create
+     * @returns Promise ComplainsModel.create()
+     */
+  post(data) {
+    return new Promise((resolve, reject) => {
+      this.ComplainsModel.create(data)
+        .then((complains) => {
+          resolve(defaultResponse(complains, HttpStatus.CREATED));
+        }).catch(err => reject(errorResponse(err.message, HttpStatus.UNPROCESSABLE_ENTITY)));
     });
   }
 }
