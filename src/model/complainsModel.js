@@ -37,6 +37,13 @@ module.exports = new class ComplainsModel {
     return Complains.create(complains);
   }
 
+  /**
+     * @returns Company.findByIdAndUpdate()
+     */
+  update(id, complain) {
+    return Complains.findByIdAndUpdate(id, complain, { new: true });
+  }
+
   deleteAll() {
     return Complains.deleteMany({});
   }

@@ -49,4 +49,12 @@ router
       });
   });
 
+router
+  .put('/:id', (req, res) => {
+    complainsController.put(req.params.id, req.body)
+      .then((response) => {
+        res.status(response.statusCode).send(response.data);
+      });
+  });
+
 module.exports = router;

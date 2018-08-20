@@ -101,6 +101,21 @@ class ComplainsController {
         }).catch(err => reject(errorResponse(err.message, HttpStatus.UNPROCESSABLE_ENTITY)));
     });
   }
+
+  /**
+     * @name put
+     * @description Send Param ID and Data Complains to Model Update
+     * @method update
+     * @returns Promise ComplainsModel.put()
+     */
+  put(id, data) {
+    return new Promise((resolve, reject) => {
+      this.ComplainsModel.update(id, data)
+        .then((complains) => {
+          resolve(defaultResponse(complains));
+        }).catch(err => reject(errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY)));
+    });
+  }
 }
 
 module.exports = ComplainsController;
