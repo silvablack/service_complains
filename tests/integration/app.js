@@ -85,7 +85,7 @@ describe('Test Integration', () => {
   });
 
   describe('Route /PUT /complains:id', () => {
-    it('should update complaim object', (done) => {
+    it('should update a complain object', (done) => {
       const data = {
         locale: {
           city: 'São Vicente Ferrer',
@@ -98,6 +98,17 @@ describe('Test Integration', () => {
           expect(res.body._id).to.be.eql(defaultComplains._id);
           expect(res.body.locale.city).to.be.eql(data.locale.city);
           expect(res.status).to.be.eql(200);
+          done(err);
+        });
+    });
+  });
+
+  describe('Route /DELETE /complains:id', () => {
+    it('should delete a complain object', (done) => {
+      request
+        .delete(`/complains/${defaultComplains._id}`)
+        .end((err, res) => {
+          expect(res.status).to.be.eql(204);
           done(err);
         });
     });
