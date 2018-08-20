@@ -37,4 +37,19 @@ describe('Test Integration', () => {
         });
     });
   });
+
+  describe('Route /GET /complains/:id', () => {
+    it('should return a complains', (done) => {
+      request
+        .get(`/complains/${defaultComplains._id}`)
+        .end((err, res) => {
+          expect(res.body._id).to.be.eql(defaultComplains._id);
+          expect(res.body.title).to.be.eql(defaultComplains.title);
+          expect(res.body.description).to.be.eql(defaultComplains.description);
+          expect(res.body.locale.city).to.be.eql(defaultComplains.locale.city);
+          expect(res.status).to.be.eql(200);
+          done(err);
+        });
+    });
+  });
 });
