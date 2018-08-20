@@ -128,4 +128,21 @@ describe('Controller Complains', () => {
       });
     });
   });
+  describe('Delete Complain', () => {
+    it('should delete a complain', (done) => {
+      const Complains = {
+        delete: td.function(),
+      };
+      const deleteComplain = [{
+        _id: '5b74e44d6906800036631900',
+      }];
+      const expectResponse = {};
+      td.when(Complains.delete(deleteComplain._id)).thenResolve(expectResponse);
+      const complainsController = new ComplainsController(Complains);
+      complainsController.delete(deleteComplain._id).then((response) => {
+        expect(response.statusCode).to.be.eql(204);
+        done();
+      });
+    });
+  });
 });
