@@ -31,8 +31,6 @@ module.exports = new class ComplainsModel {
   }
 
   /**
-     *
-     * @param {_id: String, name: String, mail: String<validate|mail>, cnpj: String}
      * @returns Complains.create()
      */
   create(complains) {
