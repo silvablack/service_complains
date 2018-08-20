@@ -85,7 +85,7 @@ describe('Controller Complains', () => {
         date_updated: Date.now(),
       }];
       td.when(Complains.create(newCompany)).thenResolve(expectResponse);
-      const complainsController = new ComplainsController(Complains, false);
+      const complainsController = new ComplainsController(Complains);
       complainsController.post(newCompany).then((response) => {
         expect(response.data).to.be.eql(expectResponse);
         done();
