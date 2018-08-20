@@ -57,4 +57,12 @@ router
       });
   });
 
+router
+  .delete('/:id', (req, res) => {
+    complainsController.delete(req.params.id)
+      .then((response) => {
+        res.status(response.statusCode).send(response.data);
+      });
+  });
+
 module.exports = router;

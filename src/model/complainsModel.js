@@ -38,11 +38,20 @@ module.exports = new class ComplainsModel {
   }
 
   /**
-     * @returns Company.findByIdAndUpdate()
+     * @returns Complains.findByIdAndUpdate()
      */
   update(id, complain) {
     return Complains.findByIdAndUpdate(id, complain, { new: true });
   }
+
+  /**
+     * @param id
+     * @returns Complains.findByIdAndRemove(id)
+     */
+  delete(id) {
+    return Complains.findByIdAndRemove(id);
+  }
+
 
   deleteAll() {
     return Complains.deleteMany({});

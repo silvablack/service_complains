@@ -116,6 +116,21 @@ class ComplainsController {
         }).catch(err => reject(errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY)));
     });
   }
+
+  /**
+     * @name delete
+     * @description Delete a Complain in MongoDB
+     * @method delete
+     * @returns Http Status(204)
+     */
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      this.ComplainsModel.delete(id)
+        .then(() => {
+          resolve(defaultResponse(null, HttpStatus.NO_CONTENT));
+        }).catch(err => reject(errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY)));
+    });
+  }
 }
 
 module.exports = ComplainsController;
