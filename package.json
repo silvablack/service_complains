@@ -6,7 +6,7 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "test": "npm run test-unit && npm run test-integration && npm run test-contract",
+    "test": "npm run lint:fix && npm run test-unit && npm run test-integration && npm run test-contract",
     "test-unit": "NODE_ENV=test mocha --opts ./tests/unit/mocha.opts ./tests/unit/**/*.js",
     "test-integration": "NODE_ENV=test mocha --opts ./tests/integration/mocha.opts ./tests/integration/*.js",
     "test-contract": "NODE_ENV=test mocha --opts ./tests/contracts/mocha.opts ./tests/contracts/*.js",
