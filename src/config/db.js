@@ -39,6 +39,7 @@ const complainsSchema = new mongoose.Schema({
     uf: {
       type: String,
       required: true,
+      maxlength: 2,
     },
   },
   company_id: {
