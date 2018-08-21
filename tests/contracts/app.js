@@ -46,4 +46,28 @@ describe('Test Contract', () => {
         });
     });
   });
+
+  describe('Route /GET /complains/:id', () => {
+    it('should return a complain valid schema', (done) => {
+      const expectedSchema = Joi.object().keys({
+        _id: Joi.string().alphanum(),
+        title: Joi.string(),
+        description: Joi.string(),
+        locale: Joi.object().keys({
+          city: Joi.string(),
+          state: Joi.string(),
+          uf: Joi.string().max(2),
+        }),
+        company_id: Joi.string().alphanum(),
+        date_created: Joi.date().iso(),
+        date_updated: Joi.date().iso(),
+      });
+      request
+        .get(`/complains/${defaultComplains._id}`)
+        .end((err, res) => {
+          Joi.assert(res.body, expectedSchema);
+          done(err);
+        });
+    });
+  });
 });
