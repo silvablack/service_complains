@@ -136,4 +136,15 @@ describe('Test Contract', () => {
         });
     });
   });
+
+  describe('Route /DELETE /complains:id', () => {
+    it('should delete a complain object', (done) => {
+      request
+        .delete(`/complains/${defaultComplains._id}`)
+        .end((err, res) => {
+          expect(res.status).to.be.eql(204);
+          done(err);
+        });
+    });
+  });
 });
