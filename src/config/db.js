@@ -22,19 +22,25 @@ const complainsSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    minlength: 10,
+    maxlength: 50,
   },
   description: {
     type: String,
     required: true,
+    minlength: 50,
+    maxlength: 500,
   },
   locale: {
     city: {
       type: String,
       required: true,
+      minlength: 4,
     },
     state: {
       type: String,
       required: true,
+      minlength: 4,
     },
     uf: {
       type: String,
