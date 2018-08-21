@@ -4,7 +4,7 @@ describe('Test Contract', () => {
   const defaultComplains = {
     _id: '5b74e44d6906800036631900',
     title: 'Corte Ilegal',
-    description: 'Lorem ipsum massa lacus justo diam molestie vulputate, luctus dolor fermentum habitant dictum et, taciti dapibus consectetur cras metus curabitur. feugiat ut odio nec nostra enim adipiscing aenean lectus elit, risus rutrum torquent augue posuere mi eu turpis, nisl molestie porta nulla tincidunt consectetur leo varius. sem porta in nisi sociosqu eleifend habitant lectus suscipit ligula nunc, commodo tristique eget dictum iaculis varius dictumst adipiscing semper. imperdiet erat orci inceptos quam sed et platea, gravida eleifend malesuada aenean aliquet molestie vivamus, sem suspendisse suscipit est porttitor fringilla. malesuada hac lacus donec consectetur, mollis congue dolor varius nostra, fringilla sollicitudin velit.',
+    description: 'Lorem ipsum massa lacus justo diam molestie vulputate, luctus dolor fermentum habitant dictum et, taciti dapibus consectetur cras metus curabitur. feugiat ut odio nec nostra enim adipiscing aenean lectus elit, risus rutrum torquent augue posuere mi eu turpis, nisl molestie porta nulla tincidunt consectetur leo varius. sem porta in nisi sociosqu eleifend habitant lectus suscipit ligula nunc, commodo tristique eget dictum iaculis varius dictumst adipiscing semper. imperdie.',
     locale: {
       city: 'São Luís',
       state: 'Maranhão',
@@ -27,12 +27,12 @@ describe('Test Contract', () => {
     it('should return a list with valid schema', (done) => {
       const expectedSchema = Joi.array().items(Joi.object().keys({
         _id: Joi.string().alphanum(),
-        title: Joi.string(),
-        description: Joi.string(),
+        title: Joi.string().min(10).max(50),
+        description: Joi.string().min(10).max(500),
         locale: Joi.object().keys({
-          city: Joi.string(),
-          state: Joi.string(),
-          uf: Joi.string().max(2),
+          city: Joi.string().min(4),
+          state: Joi.string().min(4),
+          uf: Joi.string().min(2).max(2),
         }),
         company_id: Joi.string().alphanum(),
         date_created: Joi.date().iso(),
@@ -51,12 +51,12 @@ describe('Test Contract', () => {
     it('should return a complain valid schema', (done) => {
       const expectedSchema = Joi.object().keys({
         _id: Joi.string().alphanum(),
-        title: Joi.string(),
-        description: Joi.string(),
+        title: Joi.string().min(10).max(50),
+        description: Joi.string().min(10).max(500),
         locale: Joi.object().keys({
-          city: Joi.string(),
-          state: Joi.string(),
-          uf: Joi.string().max(2),
+          city: Joi.string().min(4),
+          state: Joi.string().min(4),
+          uf: Joi.string().min(2).max(2),
         }),
         company_id: Joi.string().alphanum(),
         date_created: Joi.date().iso(),
@@ -75,7 +75,7 @@ describe('Test Contract', () => {
     const newComplain = {
       _id: '5b74e44d6906800036631901',
       title: 'Corte Ilegal',
-      description: 'Lorem ipsum massa lacus justo diam molestie vulputate, luctus dolor fermentum habitant dictum et, taciti dapibus consectetur cras metus curabitur. feugiat ut odio nec nostra enim adipiscing aenean lectus elit, risus rutrum torquent augue posuere mi eu turpis, nisl molestie porta nulla tincidunt consectetur leo varius. sem porta in nisi sociosqu eleifend habitant lectus suscipit ligula nunc, commodo tristique eget dictum iaculis varius dictumst adipiscing semper. imperdiet erat orci inceptos quam sed et platea, gravida eleifend malesuada aenean aliquet molestie vivamus, sem suspendisse suscipit est porttitor fringilla. malesuada hac lacus donec consectetur, mollis congue dolor varius nostra, fringilla sollicitudin velit.',
+      description: 'Lorem ipsum massa lacus justo diam molestie vulputate, luctus dolor fermentum habitant dictum et, taciti dapibus consectetur cras metus curabitur. feugiat ut odio nec nostra enim adipiscing aenean lectus elit, risus rutrum torquent augue posuere mi eu turpis, nisl molestie porta nulla tincidunt consectetur leo varius. sem porta in nisi sociosqu eleifend habitant lectus suscipit ligula nunc, commodo tristique eget dictum iaculis varius dictumst adipiscing semper. imperdie.',
       locale: {
         city: 'São Luís',
         state: 'Maranhão',
@@ -88,12 +88,12 @@ describe('Test Contract', () => {
     it('should create company and check if a schema is valid', (done) => {
       const expectedSchema = Joi.object().keys({
         _id: Joi.string().alphanum(),
-        title: Joi.string(),
-        description: Joi.string(),
+        title: Joi.string().min(10).max(50),
+        description: Joi.string().min(10).max(500),
         locale: Joi.object().keys({
-          city: Joi.string(),
-          state: Joi.string(),
-          uf: Joi.string().max(2),
+          city: Joi.string().min(4),
+          state: Joi.string().min(4),
+          uf: Joi.string().min(2).max(2),
         }),
         company_id: Joi.string().alphanum(),
         date_created: Joi.date().iso(),
@@ -114,12 +114,12 @@ describe('Test Contract', () => {
       const title = 'Aviso de corte não emitido';
       const expectedSchema = Joi.object().keys({
         _id: Joi.string().alphanum(),
-        title: Joi.string(),
-        description: Joi.string(),
+        title: Joi.string().min(10).max(50),
+        description: Joi.string().min(10).max(500),
         locale: Joi.object().keys({
-          city: Joi.string(),
-          state: Joi.string(),
-          uf: Joi.string().max(2),
+          city: Joi.string().min(4),
+          state: Joi.string().min(4),
+          uf: Joi.string().min(2).max(2),
         }),
         company_id: Joi.string().alphanum(),
         date_created: Joi.date().iso(),
