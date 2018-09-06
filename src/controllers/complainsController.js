@@ -58,7 +58,7 @@ class ComplainsController {
         * @constructor Redis Client
         */
       const client = redis.createClient(`redis://${process.env.URI_CACHE_COMPLAINS}`);
-      client.auth(process.env.PASSWORD_CACHE_COMPLAINS);
+      client.auth(`${process.env.PASSWORD_CACHE_COMPLAINS}`);
       client.get('allComplains', (err, reply) => {
         if (reply) {
           resolve(defaultResponse(reply));
