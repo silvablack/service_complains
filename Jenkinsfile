@@ -25,9 +25,15 @@ node {
             sh 'npm run test-unit'
         }
     }
+    
+    stage('Login ECR') {
+        sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
+    }
 
-    stage('Push image to Hub') {
-        app.push()
+    stage('Send repository') {
+        docker.withRegistry('666829565535.dkr.ecr.us-east-2.amazonaws.com/aws-ecr-api-complains', 'ecr:us-east-1:ecr-credentials'){
+            app.image().push('latest')
+        }
     }
 
 }
