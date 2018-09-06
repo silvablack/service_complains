@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 /**
  * @description connect mongo db
  */
-mongoose.connect(`mongodb://${process.env.URL_DATA_COMPLAINS}:${process.env.PORT_DATA_COMPLAINS}/db_challenge`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${process.env.URI_DATA_COMPLAINS}`, { useNewUrlParser: true });
 
 /**
  * @description Define Complains Doc Schema and Validator
