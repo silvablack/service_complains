@@ -24,6 +24,9 @@
    
    + run test integration
         `npm run test-integration`
+
+   + run test contract for object assign type validation
+        `npm run test-contract`
    
    + run lint code revision
         `npm run lint`
